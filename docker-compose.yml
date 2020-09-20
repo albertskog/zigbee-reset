@@ -1,0 +1,15 @@
+version: '3'
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    ports:
+      - target: 1883
+        published: 1883
+        protocol: tcp
+        mode: host
+  zigbee2mqtt:
+    image: koenkk/zigbee2mqtt
+    volumes:
+      - ./data:/app/data
+    devices:
+      - /dev/serial/by-id/usb-Texas_Instruments_TI_CC2531_USB_CDC___xxxxxxxxxxxxxxxxxx-if00:/dev/ttyACM0
